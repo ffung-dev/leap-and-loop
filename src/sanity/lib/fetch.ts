@@ -20,7 +20,7 @@ export async function sanityFetch<T>({
 }): Promise<T> {
   try {
     const result = await client.fetch<T>(query, params, {
-      next: { revalidate: tags ? undefined : 60, tags },
+      next: { revalidate: 60, tags },
     });
     return result ?? fallback;
   } catch (error) {

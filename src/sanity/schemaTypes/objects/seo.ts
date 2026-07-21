@@ -1,4 +1,4 @@
-import { SearchIcon } from "@sanity/icons";
+import { SearchIcon } from "@/sanity/lib/icons";
 import { defineField, defineType } from "sanity";
 
 export default defineType({

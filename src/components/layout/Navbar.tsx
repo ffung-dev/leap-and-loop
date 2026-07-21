@@ -3,7 +3,7 @@
 import { ChevronDown, Menu, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { SearchBar } from "@/components/layout/SearchBar";
 import { urlFor } from "@/sanity/lib/image";
@@ -34,11 +34,22 @@ export function Navbar({ siteTitle, logo, locations }: NavbarProps) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [locationsOpen, setLocationsOpen] = useState(false);
   const [mobileLocationsOpen, setMobileLocationsOpen] = useState(false);
+  const locationsRef = useRef<HTMLDivElement>(null);
 
   function closeMobileMenu() {
     setMobileOpen(false);
     setMobileLocationsOpen(false);
   }
+
+  useEffect(() => {
+    function handleClick(e: MouseEvent) {
+      if (locationsRef.current && !locationsRef.current.contains(e.target as Node)) {
+        setLocationsOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClick);
+    return () => document.removeEventListener("mousedown", handleClick);
+  }, []);
 
   const logoUrl = logo ? urlFor(logo)?.width(96).height(96).fit("crop").url() : undefined;
 
@@ -54,11 +65,11 @@ export function Navbar({ siteTitle, logo, locations }: NavbarProps) {
               className="h-10 w-10 rounded-full object-cover"
             />
           ) : (
-            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-lg font-display text-white">
+            <span className="flex h-10 w-10 items-center justify-center rounded-full bg-green-500 text-lg font-title text-white">
               L
             </span>
           )}
-          <span className="hidden font-display text-xl text-brown-800 sm:block">
+          <span className="hidden font-title text-xl text-brown-800 sm:block">
             {siteTitle}
           </span>
         </Link>
@@ -76,11 +87,7 @@ export function Navbar({ siteTitle, logo, locations }: NavbarProps) {
             Home
           </Link>
 
-          <div
-            className="relative"
-            onMouseEnter={() => setLocationsOpen(true)}
-            onMouseLeave={() => setLocationsOpen(false)}
-          >
+          <div className="relative" ref={locationsRef}>
             <button
               type="button"
               onClick={() => setLocationsOpen((o) => !o)}

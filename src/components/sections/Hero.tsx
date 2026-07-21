@@ -9,11 +9,11 @@ export function Hero({ homepage }: { homepage: Homepage }) {
     <section className="gradient-hero">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-24 lg:px-8">
         <div className="max-w-xl">
-          <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/70 px-4 py-1.5 text-sm font-semibold text-green-700 shadow-sm">
+          <span className="mb-5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-green-700 shadow-sm ring-1 ring-pink-200">
             <Sparkles size={15} aria-hidden />
             Handmade with heart
           </span>
-          <h1 className="font-display text-4xl leading-tight text-brown-900 sm:text-5xl lg:text-6xl">
+          <h1 className="font-title text-4xl leading-tight text-brown-900 sm:text-5xl lg:text-6xl">
             {homepage.heroTitle}
           </h1>
           {homepage.heroSubtitle && (

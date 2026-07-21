@@ -9,11 +9,11 @@ export const EVENT_TYPE_LABELS: Record<EventType, string> = {
 };
 
 export const EVENT_TYPE_COLORS: Record<EventType, string> = {
-  workshop: "bg-green-100 text-green-800",
-  market: "bg-tan-100 text-tan-800",
-  "club-event": "bg-pink-100 text-pink-800",
-  "community-service": "bg-brown-100 text-brown-800",
-  "pop-up": "bg-pink-200 text-pink-900",
+  workshop: "bg-green-600 text-white",
+  market: "bg-tan-600 text-white",
+  "club-event": "bg-pink-500 text-white",
+  "community-service": "bg-brown-600 text-white",
+  "pop-up": "bg-pink-700 text-white",
 };
 
 export function formatEventDate(iso: string) {

@@ -33,10 +33,10 @@ export default async function FiberArtsClubPage() {
       <div className="gradient-hero">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-20 lg:px-8">
           <div>
-            <span className="mb-4 inline-block rounded-full bg-white/70 px-4 py-1.5 text-sm font-semibold text-green-700 shadow-sm">
+            <span className="mb-4 inline-block rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-green-700 shadow-sm ring-1 ring-pink-200">
               Where it all started
             </span>
-            <h1 className="font-display text-4xl text-brown-900 sm:text-5xl">{title}</h1>
+            <h1 className="font-title text-4xl text-brown-900 sm:text-5xl">{title}</h1>
             <p className="mt-5 text-lg leading-relaxed text-brown-600">{mission}</p>
             <div className="mt-8">
               <Button href="/contact">Get involved</Button>
@@ -55,19 +55,19 @@ export default async function FiberArtsClubPage() {
       )}
 
       {club?.activities && club.activities.length > 0 && (
-        <section className="bg-tan-50 py-16">
+        <section className="bg-tan-100 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading eyebrow="What we do" title="Club activities" />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {club.activities.map((activity, i) => (
-                <div key={i} className="overflow-hidden rounded-3xl border border-tan-200 bg-white shadow-sm">
+                <div key={i} className="overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm">
                   {activity.image && (
                     <div className="relative aspect-[16/10] w-full">
                       <RoundedImage image={activity.image} fallbackAlt={activity.title} rounded="md" className="h-full w-full rounded-b-none" />
                     </div>
                   )}
                   <div className="p-5">
-                    <h3 className="font-display text-lg text-brown-900">{activity.title}</h3>
+                    <h3 className="font-subheading text-lg text-brown-900">{activity.title}</h3>
                     {activity.description && (
                       <p className="mt-1.5 text-sm leading-relaxed text-brown-600">{activity.description}</p>
                     )}
@@ -84,12 +84,12 @@ export default async function FiberArtsClubPage() {
           <SectionHeading eyebrow="Giving back" title="Community service projects" />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {club.communityProjects.map((project, i) => (
-              <div key={i} className="overflow-hidden rounded-3xl border border-tan-200 bg-white shadow-sm">
+              <div key={i} className="overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm">
                 <div className="relative aspect-[16/10] w-full">
                   <RoundedImage image={project.image} fallbackAlt={project.title} rounded="md" className="h-full w-full rounded-b-none" />
                 </div>
                 <div className="p-5">
-                  <h3 className="font-display text-lg text-brown-900">{project.title}</h3>
+                  <h3 className="font-subheading text-lg text-brown-900">{project.title}</h3>
                   {project.description && (
                     <p className="mt-1.5 text-sm leading-relaxed text-brown-600">{project.description}</p>
                   )}
@@ -101,7 +101,7 @@ export default async function FiberArtsClubPage() {
       )}
 
       {club?.gallery && club.gallery.length > 0 && (
-        <section className="bg-tan-50 py-16">
+        <section className="bg-tan-100 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <SectionHeading eyebrow="Gallery" title="From the club" />
             <div className="mt-10">

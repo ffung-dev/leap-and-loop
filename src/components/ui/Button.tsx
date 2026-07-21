@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 const VARIANTS = {
   primary: "bg-green-600 text-white hover:bg-green-700 shadow-sm shadow-green-900/10",
-  secondary: "bg-white text-brown-800 ring-1 ring-tan-300 hover:bg-tan-50",
+  secondary: "bg-white text-brown-800 ring-1 ring-tan-400 hover:bg-tan-100",
   pink: "bg-pink-400 text-white hover:bg-pink-500 shadow-sm shadow-pink-900/10",
   ghost: "text-brown-700 hover:bg-tan-100",
 } as const;

@@ -23,8 +23,10 @@ export default defineType({
     defineField({
       name: "email",
       title: "Contact email",
+      description:
+        "Optional — leave blank if you don't have one yet. The contact form works either way; messages are always saved under \"Contact Submissions\" in this Studio.",
       type: "string",
-      validation: (Rule) => Rule.required().email(),
+      validation: (Rule) => Rule.email(),
     }),
     defineField({
       name: "instagramUrl",

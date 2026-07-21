@@ -21,6 +21,7 @@ export default async function LocationsPage() {
     <div className="gradient-hero">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <SectionHeading
+          as="h1"
           eyebrow="Find us"
           title="Our locations"
           description="Every place you can find Leap & Loop in person — pick one to see photos, hours, and details."
@@ -33,7 +34,7 @@ export default async function LocationsPage() {
             ))}
           </div>
         ) : (
-          <div className="mt-10 flex flex-col items-center gap-3 rounded-3xl border border-dashed border-tan-300 bg-white px-6 py-14 text-center">
+          <div className="mt-10 flex flex-col items-center gap-3 rounded-3xl border border-dashed border-tan-400 bg-white px-6 py-14 text-center">
             <MapPinned className="text-tan-400" size={32} aria-hidden />
             <p className="text-brown-500">Locations are coming soon — check back shortly!</p>
           </div>

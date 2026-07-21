@@ -16,10 +16,10 @@ export function Footer({ siteSettings }: { siteSettings: SiteSettings | null }) 
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-tan-200 bg-tan-50">
+    <footer className="border-t border-tan-200 bg-tan-100">
       <div className="mx-auto grid max-w-7xl gap-10 px-4 py-12 sm:px-6 md:grid-cols-3 lg:px-8">
         <div>
-          <p className="font-display text-2xl text-brown-800">{siteTitle}</p>
+          <p className="font-title text-2xl text-brown-800">{siteTitle}</p>
           {siteSettings?.tagline && (
             <p className="mt-2 max-w-xs text-sm text-brown-600">{siteSettings.tagline}</p>
           )}

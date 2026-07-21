@@ -4,10 +4,10 @@ const components: PortableTextComponents = {
   block: {
     normal: ({ children }) => <p className="mb-4 leading-relaxed last:mb-0">{children}</p>,
     h3: ({ children }) => (
-      <h3 className="mb-3 mt-6 font-display text-xl text-brown-900 first:mt-0">{children}</h3>
+      <h3 className="mb-3 mt-6 font-subheading text-xl text-brown-900 first:mt-0">{children}</h3>
     ),
     h4: ({ children }) => (
-      <h4 className="mb-2 mt-5 font-display text-lg text-brown-900 first:mt-0">{children}</h4>
+      <h4 className="mb-2 mt-5 font-subheading text-lg text-brown-900 first:mt-0">{children}</h4>
     ),
     blockquote: ({ children }) => (
       <blockquote className="mb-4 border-l-4 border-green-300 pl-4 italic text-brown-600">

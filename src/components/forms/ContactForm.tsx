@@ -5,7 +5,7 @@ import { useState, type FormEvent } from "react";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-export function ContactForm({ email }: { email: string }) {
+export function ContactForm({ email }: { email?: string }) {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState<string>("");
 
@@ -46,7 +46,7 @@ export function ContactForm({ email }: { email: string }) {
     return (
       <div className="flex flex-col items-center gap-3 rounded-3xl border border-green-200 bg-green-50 px-6 py-12 text-center">
         <CheckCircle2 className="text-green-600" size={36} aria-hidden />
-        <p className="font-display text-xl text-brown-900">Message sent!</p>
+        <p className="font-subheading text-xl text-brown-900">Message sent!</p>
         <p className="max-w-sm text-sm text-brown-600">
           Thanks for reaching out — we&apos;ll get back to you as soon as we can.
         </p>
@@ -117,11 +117,16 @@ export function ContactForm({ email }: { email: string }) {
 
       {status === "error" && (
         <p className="rounded-xl bg-pink-50 px-4 py-3 text-sm text-pink-800">
-          {errorMessage}{" "}
-          <a href={`mailto:${email}`} className="font-semibold underline">
-            Email us instead
-          </a>
-          .
+          {errorMessage}
+          {email && (
+            <>
+              {" "}
+              <a href={`mailto:${email}`} className="font-semibold underline">
+                Email us instead
+              </a>
+              .
+            </>
+          )}
         </p>
       )}
 

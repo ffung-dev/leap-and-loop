@@ -11,7 +11,7 @@ export function FeaturedProjects({ projects }: { projects: GalleryHighlight[] })
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, i) => (
-          <div key={i} className="group overflow-hidden rounded-3xl border border-tan-200 bg-white shadow-sm">
+          <div key={i} className="group overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm">
             <div className="relative aspect-square w-full">
               <RoundedImage
                 image={project.image}
@@ -21,7 +21,7 @@ export function FeaturedProjects({ projects }: { projects: GalleryHighlight[] })
               />
             </div>
             <div className="p-5">
-              <h3 className="font-display text-lg text-brown-900">{project.title}</h3>
+              <h3 className="font-subheading text-lg text-brown-900">{project.title}</h3>
               {project.description && (
                 <p className="mt-1.5 text-sm leading-relaxed text-brown-600">{project.description}</p>
               )}

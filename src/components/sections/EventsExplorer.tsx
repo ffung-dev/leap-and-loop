@@ -46,7 +46,7 @@ export function EventsExplorer({ events }: { events: EventDoc[] }) {
               "rounded-full px-4 py-2 text-sm font-medium transition-colors",
               filter === f.value
                 ? "bg-green-600 text-white"
-                : "bg-white text-brown-700 ring-1 ring-tan-300 hover:bg-tan-50"
+                : "bg-white text-brown-700 ring-1 ring-tan-400 hover:bg-tan-100"
             )}
           >
             {f.label}
@@ -55,7 +55,7 @@ export function EventsExplorer({ events }: { events: EventDoc[] }) {
       </div>
 
       <section className="mt-10">
-        <h2 className="font-display text-2xl text-brown-900">Upcoming</h2>
+        <h2 className="font-subheading text-2xl text-brown-900">Upcoming</h2>
         {upcoming.length > 0 ? (
           <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {upcoming.map((event) => (
@@ -68,7 +68,7 @@ export function EventsExplorer({ events }: { events: EventDoc[] }) {
       </section>
 
       <section className="mt-14">
-        <h2 className="font-display text-2xl text-brown-900">Past events</h2>
+        <h2 className="font-subheading text-2xl text-brown-900">Past events</h2>
         {past.length > 0 ? (
           <div className="mt-5 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {past.map((event) => (
@@ -85,7 +85,7 @@ export function EventsExplorer({ events }: { events: EventDoc[] }) {
 
 function EmptyState({ message }: { message: string }) {
   return (
-    <div className="mt-5 flex flex-col items-center gap-3 rounded-3xl border border-dashed border-tan-300 bg-white px-6 py-12 text-center">
+    <div className="mt-5 flex flex-col items-center gap-3 rounded-3xl border border-dashed border-tan-400 bg-white px-6 py-12 text-center">
       <CalendarX2 className="text-tan-400" size={28} aria-hidden />
       <p className="text-brown-500">{message}</p>
     </div>

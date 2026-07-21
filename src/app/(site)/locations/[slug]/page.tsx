@@ -51,7 +51,7 @@ export default async function LocationPage({
             <Link href="/locations" className="text-sm font-semibold text-green-700 hover:underline">
               &larr; All locations
             </Link>
-            <h1 className="mt-4 font-display text-4xl text-brown-900 sm:text-5xl">{location.name}</h1>
+            <h1 className="mt-4 font-title text-4xl text-brown-900 sm:text-5xl">{location.name}</h1>
             {location.address && (
               <p className="mt-4 flex items-start gap-2 text-brown-600">
                 <MapPin size={18} className="mt-0.5 shrink-0" aria-hidden />
@@ -87,7 +87,7 @@ export default async function LocationPage({
           <div className="lg:col-span-2">
             {galleryImages && galleryImages.length > 0 && (
               <div>
-                <h2 className="font-display text-2xl text-brown-900">Photos</h2>
+                <h2 className="font-subheading text-2xl text-brown-900">Photos</h2>
                 <div className="mt-5">
                   <ImageGallery images={galleryImages} />
                 </div>
@@ -96,7 +96,7 @@ export default async function LocationPage({
 
             {location.additionalInfo && (
               <div className="mt-10">
-                <h2 className="font-display text-2xl text-brown-900">Good to know</h2>
+                <h2 className="font-subheading text-2xl text-brown-900">Good to know</h2>
                 <div className="mt-4">
                   <PortableTextRenderer value={location.additionalInfo} />
                 </div>
@@ -105,8 +105,8 @@ export default async function LocationPage({
           </div>
 
           {location.schedule && location.schedule.length > 0 && (
-            <div className="h-fit rounded-3xl border border-tan-200 bg-tan-50 p-6">
-              <h2 className="flex items-center gap-2 font-display text-xl text-brown-900">
+            <div className="h-fit rounded-3xl border border-tan-200 bg-tan-100 p-6">
+              <h2 className="flex items-center gap-2 font-subheading text-xl text-brown-900">
                 <Clock size={18} aria-hidden />
                 Schedule
               </h2>

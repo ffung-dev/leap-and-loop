@@ -18,13 +18,18 @@ export default async function EventsPage() {
   const events = await getEvents();
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-      <SectionHeading
-        eyebrow="Get involved"
-        title="Events"
-        description="Workshops, markets, pop-ups, and community service — see what we're up to and where to find us next."
-      />
-      <div className="mt-10">
+    <div>
+      <div className="gradient-hero">
+        <div className="mx-auto px-4 py-14 sm:px-6 lg:px-8">
+          <SectionHeading
+            as="h1"
+            eyebrow="Get involved"
+            title="Events"
+            description="Workshops, markets, pop-ups, and community service — see what we're up to and where to find us next."
+          />
+        </div>
+      </div>
+      <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <EventsExplorer events={events} />
       </div>
     </div>

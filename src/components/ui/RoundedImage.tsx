@@ -45,11 +45,11 @@ export function RoundedImage({
         <span className="text-3xl" aria-hidden>
           🧶
         </span>
-        <span className="text-xs font-medium text-tan-500">Photo coming soon</span>
+        <span className="text-xs font-medium text-tan-600">Photo coming soon</span>
       </>
     );
     const placeholderClasses =
-      "flex flex-col items-center justify-center gap-2 border-2 border-dashed border-tan-300 bg-tan-50 text-tan-400";
+      "flex flex-col items-center justify-center gap-2 border-2 border-dashed border-tan-400 bg-tan-100 text-tan-500";
 
     if (fill) {
       return (

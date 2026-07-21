@@ -8,8 +8,6 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { buildMetadata } from "@/lib/seo";
 import { getContact } from "@/sanity/lib/data";
 
-const FALLBACK_EMAIL = "hello@leapandloop.com";
-
 export async function generateMetadata(): Promise<Metadata> {
   const contact = await getContact();
   return buildMetadata({
@@ -21,12 +19,13 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function ContactPage() {
   const contact = await getContact();
-  const email = contact?.email || FALLBACK_EMAIL;
+  const hasDirectContact = Boolean(contact?.email || contact?.instagramUrl);
 
   return (
     <div className="gradient-hero">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
         <SectionHeading
+          as="h1"
           eyebrow="We'd love to hear from you"
           title={contact?.title || "Get in touch"}
           description={
@@ -36,36 +35,40 @@ export default async function ContactPage() {
         />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-5">
-          <div className="lg:col-span-3 rounded-3xl border border-tan-200 bg-white p-6 shadow-sm sm:p-8">
-            <ContactForm email={email} />
+          <div className="lg:col-span-3 rounded-3xl border border-tan-300 bg-white p-6 shadow-sm sm:p-8">
+            <ContactForm email={contact?.email} />
           </div>
 
           <div className="flex flex-col gap-6 lg:col-span-2">
-            <div className="rounded-3xl border border-tan-200 bg-white p-6 shadow-sm">
-              <h2 className="font-display text-lg text-brown-900">Reach us directly</h2>
-              <a
-                href={`mailto:${email}`}
-                className="mt-4 flex items-center gap-2.5 text-sm text-brown-700 hover:text-green-700"
-              >
-                <Mail size={16} aria-hidden />
-                {email}
-              </a>
-              {contact?.instagramUrl && (
-                <a
-                  href={contact.instagramUrl}
-                  target="_blank"
-                  rel="noreferrer noopener"
-                  className="mt-2.5 flex items-center gap-2.5 text-sm text-brown-700 hover:text-green-700"
-                >
-                  <SocialIcon platform="instagram" className="h-4 w-4" />
-                  {contact.instagramHandle || "Instagram"}
-                </a>
-              )}
-            </div>
+            {hasDirectContact && (
+              <div className="rounded-3xl border border-tan-300 bg-white p-6 shadow-sm">
+                <h2 className="font-subheading text-lg text-brown-900">Reach us directly</h2>
+                {contact?.email && (
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="mt-4 flex items-center gap-2.5 text-sm text-brown-700 hover:text-green-700"
+                  >
+                    <Mail size={16} aria-hidden />
+                    {contact.email}
+                  </a>
+                )}
+                {contact?.instagramUrl && (
+                  <a
+                    href={contact.instagramUrl}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="mt-2.5 flex items-center gap-2.5 text-sm text-brown-700 hover:text-green-700"
+                  >
+                    <SocialIcon platform="instagram" className="h-4 w-4" />
+                    {contact.instagramHandle || "Instagram"}
+                  </a>
+                )}
+              </div>
+            )}
 
             {contact?.commissionInquiryText && (
               <div className="rounded-3xl border border-pink-200 bg-pink-50 p-6">
-                <h2 className="font-display text-lg text-brown-900">
+                <h2 className="font-subheading text-lg text-brown-900">
                   {contact.commissionInquiryTitle || "Custom commissions"}
                 </h2>
                 <div className="mt-3 text-sm">

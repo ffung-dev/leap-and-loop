@@ -1,16 +1,22 @@
 import type { Metadata } from "next";
-import { Baloo_2, Nunito } from "next/font/google";
+import { Birthstone_Bounce, Elsie, Karla } from "next/font/google";
 
 import "./globals.css";
 
-const baloo = Baloo_2({
-  variable: "--font-baloo",
+const birthstoneBounce = Birthstone_Bounce({
+  variable: "--font-birthstone",
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["400", "500"],
 });
 
-const nunito = Nunito({
-  variable: "--font-nunito",
+const elsie = Elsie({
+  variable: "--font-elsie",
+  subsets: ["latin"],
+  weight: ["400", "900"],
+});
+
+const karla = Karla({
+  variable: "--font-karla",
   subsets: ["latin"],
 });
 
@@ -30,7 +36,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${baloo.variable} ${nunito.variable} h-full antialiased`}>
+    <html
+      lang="en"
+      className={`${birthstoneBounce.variable} ${elsie.variable} ${karla.variable} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col bg-background text-foreground">{children}</body>
     </html>
   );

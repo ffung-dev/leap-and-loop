@@ -14,7 +14,7 @@ export function EventCard({ event }: { event: EventDoc }) {
     <article
       id={event._id}
       className={cn(
-        "group flex scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-tan-200 bg-white shadow-sm transition-shadow hover:shadow-md",
+        "group flex scroll-mt-28 flex-col overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm transition-shadow hover:shadow-md",
         past && "opacity-70"
       )}
     >
@@ -36,7 +36,7 @@ export function EventCard({ event }: { event: EventDoc }) {
       </div>
 
       <div className="flex flex-1 flex-col gap-2 p-5">
-        <h3 className="font-display text-lg text-brown-900">{event.title}</h3>
+        <h3 className="font-subheading text-lg text-brown-900">{event.title}</h3>
 
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brown-500">
           <span className="flex items-center gap-1.5">

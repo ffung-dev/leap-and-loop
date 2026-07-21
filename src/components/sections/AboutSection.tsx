@@ -17,7 +17,7 @@ export function AboutSection({ homepage }: { homepage: Homepage }) {
         </div>
 
         {communityHighlight && (
-          <div className="overflow-hidden rounded-3xl border border-tan-200 bg-white shadow-sm">
+          <div className="overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm">
             <div className="relative aspect-[16/10] w-full">
               <RoundedImage
                 image={communityHighlight.image}
@@ -30,7 +30,7 @@ export function AboutSection({ homepage }: { homepage: Homepage }) {
               <p className="text-sm font-semibold uppercase tracking-wide text-pink-600">
                 Community involvement
               </p>
-              <h3 className="mt-1.5 font-display text-xl text-brown-900">
+              <h3 className="mt-1.5 font-subheading text-xl text-brown-900">
                 {communityHighlight.title}
               </h3>
               {communityHighlight.description && (

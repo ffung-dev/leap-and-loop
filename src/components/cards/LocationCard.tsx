@@ -8,7 +8,7 @@ export function LocationCard({ location }: { location: Pick<LocationDoc, "name" 
   return (
     <Link
       href={`/locations/${location.slug}`}
-      className="group flex flex-col overflow-hidden rounded-3xl border border-tan-200 bg-white shadow-sm transition-shadow hover:shadow-md"
+      className="group flex flex-col overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm transition-shadow hover:shadow-md"
     >
       <div className="relative aspect-[4/3] w-full">
         <RoundedImage
@@ -19,7 +19,7 @@ export function LocationCard({ location }: { location: Pick<LocationDoc, "name" 
         />
       </div>
       <div className="flex flex-1 flex-col gap-1.5 p-5">
-        <h3 className="font-display text-lg text-brown-900">{location.name}</h3>
+        <h3 className="font-subheading text-lg text-brown-900">{location.name}</h3>
         {location.address && (
           <p className="flex items-start gap-1.5 text-sm text-brown-500">
             <MapPin size={14} className="mt-0.5 shrink-0" aria-hidden />

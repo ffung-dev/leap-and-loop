@@ -7,15 +7,15 @@ export function Hero({ homepage }: { homepage: Homepage }) {
   return (
     <section className="gradient-hero">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-24 lg:px-8">
-        <div className="max-w-xl">
+        <div>
           <WiggleOnHover
             as="h1"
-            className="font-title text-4xl leading-tight text-brown-900 sm:text-5xl lg:text-6xl"
+            className="font-title text-5xl leading-[1.05] text-brown-900 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
           >
             {homepage.heroTitle}
           </WiggleOnHover>
           {homepage.heroSubtitle && (
-            <p className="mt-5 text-lg leading-relaxed text-brown-600">{homepage.heroSubtitle}</p>
+            <p className="mt-5 max-w-xl text-lg leading-relaxed text-brown-600">{homepage.heroSubtitle}</p>
           )}
           <div className="mt-8 flex flex-wrap gap-3">
             <Button href={homepage.heroCtaLink || "/events"} size="lg">

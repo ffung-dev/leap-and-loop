@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/Button";
 import { RoundedImage } from "@/components/ui/RoundedImage";
-import { WiggleOnHover } from "@/components/ui/WiggleOnHover";
+import { HeroTitle } from "@/components/sections/HeroTitle";
 import type { Homepage } from "@/types/sanity";
 
 export function Hero({ homepage }: { homepage: Homepage }) {
@@ -8,12 +8,7 @@ export function Hero({ homepage }: { homepage: Homepage }) {
     <section className="gradient-hero">
       <div className="mx-auto grid max-w-7xl items-center gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:gap-16 lg:py-24 lg:px-8">
         <div>
-          <WiggleOnHover
-            as="h1"
-            className="font-title text-5xl leading-[1.05] text-brown-900 sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl"
-          >
-            {homepage.heroTitle}
-          </WiggleOnHover>
+          <HeroTitle text={homepage.heroTitle} className="font-title leading-none text-brown-900" />
           {homepage.heroSubtitle && (
             <p className="mt-5 max-w-xl text-lg leading-relaxed text-brown-600">{homepage.heroSubtitle}</p>
           )}

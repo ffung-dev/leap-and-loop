@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Elsie, Gaegu, Montserrat } from "next/font/google";
+import { Elsie, Montserrat, Patrick_Hand_SC } from "next/font/google";
 
 import "./globals.css";
 
-const gaegu = Gaegu({
-  variable: "--font-gaegu",
+const patrickHandSC = Patrick_Hand_SC({
+  variable: "--font-patrick-hand",
   subsets: ["latin"],
-  weight: ["400", "700"],
+  weight: ["400"],
 });
 
 const elsie = Elsie({
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${gaegu.variable} ${elsie.variable} ${montserrat.variable} h-full antialiased`}
+      className={`${patrickHandSC.variable} ${elsie.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">{children}</body>
     </html>

@@ -9,6 +9,15 @@ export const siteSettingsQuery = groq`
     funFactsIntro,
     funFacts,
     socialLinks,
+    locationsEyebrow,
+    locationsPageTitle,
+    locationsPageDescription,
+    eventsEyebrow,
+    eventsPageTitle,
+    eventsPageDescription,
+    footerExploreLabel,
+    footerContactLabel,
+    footerCopyrightText,
     seo
   }
 `;
@@ -20,10 +29,22 @@ export const homepageQuery = groq`
     heroImage,
     heroCtaLabel,
     heroCtaLink,
+    heroSecondaryCtaLabel,
+    heroSecondaryCtaLink,
+    aboutEyebrow,
     aboutTitle,
     aboutText,
     communityHighlight,
+    featuredEventsEyebrow,
+    featuredEventsTitle,
+    featuredEventsCtaLabel,
+    featuredProjectsEyebrow,
+    featuredProjectsTitle,
     featuredProjects,
+    exploreTitle,
+    exploreLocationsCard,
+    exploreFiberArtsCard,
+    exploreContactCard,
     seo
   }
 `;
@@ -96,12 +117,20 @@ export const upcomingEventsQuery = groq`
 
 export const fiberArtsClubQuery = groq`
   *[_type == "fiberArtsClub"][0]{
+    heroEyebrow,
     title,
     mission,
+    ctaLabel,
     description,
     heroImage,
+    activitiesEyebrow,
+    activitiesTitle,
     activities,
+    communityProjectsEyebrow,
+    communityProjectsTitle,
     communityProjects,
+    galleryEyebrow,
+    galleryTitle,
     gallery,
     seo
   }
@@ -109,6 +138,7 @@ export const fiberArtsClubQuery = groq`
 
 export const contactQuery = groq`
   *[_type == "contact"][0]{
+    eyebrow,
     title,
     intro,
     email,

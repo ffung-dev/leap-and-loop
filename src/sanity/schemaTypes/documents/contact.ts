@@ -8,6 +8,13 @@ export default defineType({
   icon: EnvelopeIcon,
   fields: [
     defineField({
+      name: "eyebrow",
+      title: "Page caption",
+      description: "The small label shown above the page title.",
+      type: "string",
+      initialValue: "We'd love to hear from you",
+    }),
+    defineField({
       name: "title",
       title: "Page title",
       type: "string",

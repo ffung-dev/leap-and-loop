@@ -37,9 +37,25 @@ export default async function HomePage() {
     <>
       <Hero homepage={home} />
       <AboutSection homepage={home} />
-      {home.featuredProjects && <FeaturedProjects projects={home.featuredProjects} />}
-      <FeaturedEvents events={upcomingEvents} />
-      <ExploreCta />
+      {home.featuredProjects && (
+        <FeaturedProjects
+          projects={home.featuredProjects}
+          eyebrow={home.featuredProjectsEyebrow}
+          title={home.featuredProjectsTitle}
+        />
+      )}
+      <FeaturedEvents
+        events={upcomingEvents}
+        eyebrow={home.featuredEventsEyebrow}
+        title={home.featuredEventsTitle}
+        ctaLabel={home.featuredEventsCtaLabel}
+      />
+      <ExploreCta
+        title={home.exploreTitle}
+        locationsCard={home.exploreLocationsCard}
+        fiberArtsCard={home.exploreFiberArtsCard}
+        contactCard={home.exploreContactCard}
+      />
     </>
   );
 }

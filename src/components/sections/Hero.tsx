@@ -16,8 +16,8 @@ export function Hero({ homepage }: { homepage: Homepage }) {
             <Button href={homepage.heroCtaLink || "/events"} size="lg">
               {homepage.heroCtaLabel || "See what we're making"}
             </Button>
-            <Button href="/contact" variant="secondary" size="lg">
-              Get in touch
+            <Button href={homepage.heroSecondaryCtaLink || "/contact"} variant="secondary" size="lg">
+              {homepage.heroSecondaryCtaLabel || "Get in touch"}
             </Button>
           </div>
         </div>

@@ -42,7 +42,9 @@ export function Footer({ siteSettings }: { siteSettings: SiteSettings | null }) 
         </div>
 
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-brown-500">Explore</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-brown-500">
+            {siteSettings?.footerExploreLabel || "Explore"}
+          </p>
           <ul className="mt-4 space-y-2.5">
             {QUICK_LINKS.map((link) => (
               <li key={link.href}>
@@ -55,7 +57,9 @@ export function Footer({ siteSettings }: { siteSettings: SiteSettings | null }) 
         </div>
 
         <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-brown-500">Get in touch</p>
+          <p className="text-sm font-semibold uppercase tracking-wide text-brown-500">
+            {siteSettings?.footerContactLabel || "Get in touch"}
+          </p>
           {siteSettings?.email && (
             <a
               href={`mailto:${siteSettings.email}`}
@@ -74,7 +78,7 @@ export function Footer({ siteSettings }: { siteSettings: SiteSettings | null }) 
       </div>
 
       <div className="border-t border-tan-200 px-4 py-5 text-center text-xs text-brown-500 sm:px-6 lg:px-8">
-        &copy; {year} {siteTitle}. Handmade with care by our teen crocheters.
+        &copy; {year} {siteTitle}. {siteSettings?.footerCopyrightText || "Handmade with care by our teen crocheters."}
       </div>
     </footer>
   );

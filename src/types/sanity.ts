@@ -59,7 +59,21 @@ export type SiteSettings = {
   funFactsIntro?: string;
   funFacts?: FunFact[];
   socialLinks?: SocialLink[];
+  locationsEyebrow?: string;
+  locationsPageTitle?: string;
+  locationsPageDescription?: string;
+  eventsEyebrow?: string;
+  eventsPageTitle?: string;
+  eventsPageDescription?: string;
+  footerExploreLabel?: string;
+  footerContactLabel?: string;
+  footerCopyrightText?: string;
   seo?: Seo;
+};
+
+export type ExploreCardContent = {
+  title?: string;
+  description?: string;
 };
 
 export type Homepage = {
@@ -68,10 +82,22 @@ export type Homepage = {
   heroImage?: ImageWithAlt;
   heroCtaLabel?: string;
   heroCtaLink?: string;
+  heroSecondaryCtaLabel?: string;
+  heroSecondaryCtaLink?: string;
+  aboutEyebrow?: string;
   aboutTitle?: string;
   aboutText?: PortableTextBlock[];
   communityHighlight?: GalleryHighlight;
+  featuredEventsEyebrow?: string;
+  featuredEventsTitle?: string;
+  featuredEventsCtaLabel?: string;
+  featuredProjectsEyebrow?: string;
+  featuredProjectsTitle?: string;
   featuredProjects?: GalleryHighlight[];
+  exploreTitle?: string;
+  exploreLocationsCard?: ExploreCardContent;
+  exploreFiberArtsCard?: ExploreCardContent;
+  exploreContactCard?: ExploreCardContent;
   seo?: Seo;
 };
 
@@ -111,20 +137,29 @@ export type EventDoc = {
 };
 
 export type FiberArtsClub = {
+  heroEyebrow?: string;
   title?: string;
   mission?: string;
+  ctaLabel?: string;
   description?: PortableTextBlock[];
   heroImage?: ImageWithAlt;
+  activitiesEyebrow?: string;
+  activitiesTitle?: string;
   activities?: ActivityItem[];
+  communityProjectsEyebrow?: string;
+  communityProjectsTitle?: string;
   communityProjects?: GalleryHighlight[];
+  galleryEyebrow?: string;
+  galleryTitle?: string;
   gallery?: ImageWithAlt[];
   seo?: Seo;
 };
 
 export type ContactPage = {
+  eyebrow?: string;
   title?: string;
   intro?: string;
-  email: string;
+  email?: string;
   instagramUrl?: string;
   instagramHandle?: string;
   commissionInquiryTitle?: string;

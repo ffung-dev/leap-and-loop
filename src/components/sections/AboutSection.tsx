@@ -10,7 +10,10 @@ export function AboutSection({ homepage }: { homepage: Homepage }) {
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <SectionHeading eyebrow="Our story" title={homepage.aboutTitle || "Who we are"} />
+          <SectionHeading
+            eyebrow={homepage.aboutEyebrow || "Our story"}
+            title={homepage.aboutTitle || "Who we are"}
+          />
           <div className="mt-6">
             <PortableTextRenderer value={homepage.aboutText} />
           </div>

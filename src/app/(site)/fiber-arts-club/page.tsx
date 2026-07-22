@@ -34,12 +34,12 @@ export default async function FiberArtsClubPage() {
         <div className="mx-auto grid max-w-7xl gap-10 px-4 py-14 sm:px-6 lg:grid-cols-2 lg:items-center lg:py-20 lg:px-8">
           <div>
             <span className="mb-4 inline-block rounded-full bg-white px-4 py-1.5 text-sm font-semibold text-green-700 shadow-sm ring-1 ring-pink-200">
-              Where it all started
+              {club?.heroEyebrow || "Where it all started"}
             </span>
             <h1 className="font-title text-4xl text-brown-900 sm:text-5xl">{title}</h1>
             <p className="mt-5 text-lg leading-relaxed text-brown-600">{mission}</p>
             <div className="mt-8">
-              <Button href="/contact">Get involved</Button>
+              <Button href="/contact">{club?.ctaLabel || "Get involved"}</Button>
             </div>
           </div>
           <div className="relative aspect-[4/3] w-full">
@@ -57,7 +57,10 @@ export default async function FiberArtsClubPage() {
       {club?.activities && club.activities.length > 0 && (
         <section className="bg-tan-100 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading eyebrow="What we do" title="Club activities" />
+            <SectionHeading
+              eyebrow={club?.activitiesEyebrow || "What we do"}
+              title={club?.activitiesTitle || "Club activities"}
+            />
             <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {club.activities.map((activity, i) => (
                 <div key={i} className="overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm">
@@ -81,7 +84,10 @@ export default async function FiberArtsClubPage() {
 
       {club?.communityProjects && club.communityProjects.length > 0 && (
         <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-          <SectionHeading eyebrow="Giving back" title="Community service projects" />
+          <SectionHeading
+            eyebrow={club?.communityProjectsEyebrow || "Giving back"}
+            title={club?.communityProjectsTitle || "Community service projects"}
+          />
           <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {club.communityProjects.map((project, i) => (
               <div key={i} className="overflow-hidden rounded-3xl border border-tan-300 bg-white shadow-sm">
@@ -103,7 +109,10 @@ export default async function FiberArtsClubPage() {
       {club?.gallery && club.gallery.length > 0 && (
         <section className="bg-tan-100 py-16">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading eyebrow="Gallery" title="From the club" />
+            <SectionHeading
+              eyebrow={club?.galleryEyebrow || "Gallery"}
+              title={club?.galleryTitle || "From the club"}
+            />
             <div className="mt-10">
               <ImageGallery images={club.gallery} />
             </div>

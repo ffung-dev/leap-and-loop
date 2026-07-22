@@ -2,12 +2,23 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { RoundedImage } from "@/components/ui/RoundedImage";
 import type { GalleryHighlight } from "@/types/sanity";
 
-export function FeaturedProjects({ projects }: { projects: GalleryHighlight[] }) {
+type FeaturedProjectsProps = {
+  projects: GalleryHighlight[];
+  eyebrow?: string;
+  title?: string;
+};
+
+export function FeaturedProjects({ projects, eyebrow, title }: FeaturedProjectsProps) {
   if (!projects || projects.length === 0) return null;
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-      <SectionHeading eyebrow="Our work" title="A few of our favorites" align="center" className="mx-auto" />
+      <SectionHeading
+        eyebrow={eyebrow || "Our work"}
+        title={title || "A few of our favorites"}
+        align="center"
+        className="mx-auto"
+      />
 
       <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {projects.map((project, i) => (

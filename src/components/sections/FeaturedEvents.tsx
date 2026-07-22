@@ -5,14 +5,21 @@ import { Button } from "@/components/ui/Button";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import type { EventDoc } from "@/types/sanity";
 
-export function FeaturedEvents({ events }: { events: EventDoc[] }) {
+type FeaturedEventsProps = {
+  events: EventDoc[];
+  eyebrow?: string;
+  title?: string;
+  ctaLabel?: string;
+};
+
+export function FeaturedEvents({ events, eyebrow, title, ctaLabel }: FeaturedEventsProps) {
   return (
     <section className="bg-tan-100 py-16">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex flex-wrap items-end justify-between gap-4">
-          <SectionHeading eyebrow="What's next" title="Upcoming events" />
+          <SectionHeading eyebrow={eyebrow || "What's next"} title={title || "Upcoming events"} />
           <Button href="/events" variant="secondary">
-            See all events
+            {ctaLabel || "See all events"}
           </Button>
         </div>
 

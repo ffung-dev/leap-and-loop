@@ -26,7 +26,7 @@ export default async function ContactPage() {
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 lg:px-8">
         <SectionHeading
           as="h1"
-          eyebrow="We'd love to hear from you"
+          eyebrow={contact?.eyebrow || "We'd love to hear from you"}
           title={contact?.title || "Get in touch"}
           description={
             contact?.intro ||

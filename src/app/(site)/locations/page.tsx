@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { LocationCard } from "@/components/cards/LocationCard";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { buildMetadata } from "@/lib/seo";
-import { getLocationsIndex } from "@/sanity/lib/data";
+import { getLocationsIndex, getSiteSettings } from "@/sanity/lib/data";
 
 export function generateMetadata(): Metadata {
   return buildMetadata({
@@ -15,16 +15,19 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function LocationsPage() {
-  const locations = await getLocationsIndex();
+  const [locations, siteSettings] = await Promise.all([getLocationsIndex(), getSiteSettings()]);
 
   return (
     <div className="gradient-hero">
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
         <SectionHeading
           as="h1"
-          eyebrow="Find us"
-          title="Our locations"
-          description="Every place you can find Leap & Loop in person — pick one to see photos, hours, and details."
+          eyebrow={siteSettings?.locationsEyebrow || "Find us"}
+          title={siteSettings?.locationsPageTitle || "Our locations"}
+          description={
+            siteSettings?.locationsPageDescription ||
+            "Every place you can find Leap & Loop in person — pick one to see photos, hours, and details."
+          }
         />
 
         {locations.length > 0 ? (

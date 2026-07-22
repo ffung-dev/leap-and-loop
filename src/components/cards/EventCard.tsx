@@ -1,7 +1,7 @@
 import { Calendar, MapPin } from "lucide-react";
 
 import { RoundedImage } from "@/components/ui/RoundedImage";
-import { EVENT_TYPE_COLORS, EVENT_TYPE_LABELS, formatEventDate, formatEventTime, isPastEvent } from "@/lib/format";
+import { EVENT_TYPE_COLOR_CLASSES, formatEventDate, formatEventTime, isPastEvent } from "@/lib/format";
 import { toPlainText } from "@/lib/portableText";
 import { cn } from "@/lib/utils";
 import type { EventDoc } from "@/types/sanity";
@@ -20,14 +20,16 @@ export function EventCard({ event }: { event: EventDoc }) {
     >
       <div className="relative aspect-[4/3] w-full">
         <RoundedImage image={event.images?.[0]} fallbackAlt={event.title} rounded="md" className="h-full w-full rounded-b-none" />
-        <span
-          className={cn(
-            "absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-semibold shadow-sm",
-            EVENT_TYPE_COLORS[event.eventType]
-          )}
-        >
-          {EVENT_TYPE_LABELS[event.eventType]}
-        </span>
+        {event.eventType && (
+          <span
+            className={cn(
+              "absolute left-3 top-3 rounded-full px-3 py-1 text-xs font-semibold shadow-sm",
+              EVENT_TYPE_COLOR_CLASSES[event.eventType.color]
+            )}
+          >
+            {event.eventType.name}
+          </span>
+        )}
         {past && (
           <span className="absolute right-3 top-3 rounded-full bg-brown-800/80 px-3 py-1 text-xs font-semibold text-white">
             Past

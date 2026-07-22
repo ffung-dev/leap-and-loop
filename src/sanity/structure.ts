@@ -1,4 +1,4 @@
-import { CalendarIcon, CogIcon, EnvelopeIcon, HeartIcon, HomeIcon, InboxIcon, PinIcon } from "@/sanity/lib/icons";
+import { CalendarIcon, CogIcon, EnvelopeIcon, HeartIcon, HomeIcon, InboxIcon, PinIcon, TagIcon } from "@/sanity/lib/icons";
 import type { StructureResolver } from "sanity/structure";
 
 export const SINGLETON_TYPES = new Set([
@@ -31,6 +31,7 @@ export const structure: StructureResolver = (S) =>
       S.divider(),
       S.documentTypeListItem("location").title("Locations").icon(PinIcon),
       S.documentTypeListItem("event").title("Events").icon(CalendarIcon),
+      S.documentTypeListItem("eventType").title("Event Types").icon(TagIcon),
       S.divider(),
       S.documentTypeListItem("contactSubmission")
         .title("Contact Submissions")

@@ -95,7 +95,7 @@ export const eventsQuery = groq`
     _id,
     title,
     date,
-    eventType,
+    "eventType": eventType->{ _id, name, "slug": slug.current, color },
     "location": location->{ name, "slug": slug.current },
     locationNote,
     description,
@@ -108,11 +108,20 @@ export const upcomingEventsQuery = groq`
     _id,
     title,
     date,
-    eventType,
+    "eventType": eventType->{ _id, name, "slug": slug.current, color },
     "location": location->{ name, "slug": slug.current },
     locationNote,
     description,
     images
+  }
+`;
+
+export const eventTypesQuery = groq`
+  *[_type == "eventType"] | order(order asc, name asc){
+    _id,
+    name,
+    "slug": slug.current,
+    color
   }
 `;
 

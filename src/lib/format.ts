@@ -1,19 +1,12 @@
-import type { EventType } from "@/types/sanity";
+import type { EventTypeColor } from "@/types/sanity";
 
-export const EVENT_TYPE_LABELS: Record<EventType, string> = {
-  workshop: "Workshop",
-  market: "Market",
-  "club-event": "Club Event",
-  "community-service": "Community Service",
-  "pop-up": "Pop-Up",
-};
-
-export const EVENT_TYPE_COLORS: Record<EventType, string> = {
-  workshop: "bg-green-600 text-white",
-  market: "bg-tan-600 text-white",
-  "club-event": "bg-pink-500 text-white",
-  "community-service": "bg-brown-600 text-white",
-  "pop-up": "bg-pink-700 text-white",
+// Tailwind needs full literal class names to statically detect them, so this
+// maps each Studio-selectable color option to a fixed, complete class string.
+export const EVENT_TYPE_COLOR_CLASSES: Record<EventTypeColor, string> = {
+  green: "bg-green-600 text-white",
+  brown: "bg-brown-600 text-white",
+  tan: "bg-tan-600 text-white",
+  pink: "bg-pink-600 text-white",
 };
 
 export function formatEventDate(iso: string) {

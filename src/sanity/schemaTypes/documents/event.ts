@@ -1,14 +1,6 @@
 import { CalendarIcon } from "@/sanity/lib/icons";
 import { defineField, defineType } from "sanity";
 
-export const EVENT_TYPES = [
-  { title: "Workshop", value: "workshop" },
-  { title: "Market", value: "market" },
-  { title: "Club Event", value: "club-event" },
-  { title: "Community Service", value: "community-service" },
-  { title: "Pop-Up", value: "pop-up" },
-] as const;
-
 export default defineType({
   name: "event",
   title: "Event",
@@ -30,8 +22,9 @@ export default defineType({
     defineField({
       name: "eventType",
       title: "Event type",
-      type: "string",
-      options: { list: [...EVENT_TYPES], layout: "radio" },
+      description: "Manage the list of available types under \"Event Types\" in the sidebar.",
+      type: "reference",
+      to: [{ type: "eventType" }],
       validation: (Rule) => Rule.required(),
     }),
     defineField({
@@ -68,7 +61,7 @@ export default defineType({
     },
   ],
   preview: {
-    select: { title: "title", date: "date", media: "images.0.image", type: "eventType" },
+    select: { title: "title", date: "date", media: "images.0.image", type: "eventType.name" },
     prepare({ title, date, media, type }) {
       return {
         title,

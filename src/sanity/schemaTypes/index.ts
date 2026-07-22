@@ -11,6 +11,7 @@ import socialLink from "./objects/socialLink";
 import contact from "./documents/contact";
 import contactSubmission from "./documents/contactSubmission";
 import event from "./documents/event";
+import eventType from "./documents/eventType";
 import fiberArtsClub from "./documents/fiberArtsClub";
 import homepage from "./documents/homepage";
 import location from "./documents/location";
@@ -22,6 +23,7 @@ export const schema: { types: SchemaTypeDefinition[] } = {
     homepage,
     location,
     event,
+    eventType,
     fiberArtsClub,
     contact,
     siteSettings,

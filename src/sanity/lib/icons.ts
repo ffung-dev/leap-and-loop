@@ -14,3 +14,4 @@ export const EnvelopeIcon = icons["envelope"];
 export const HeartIcon = icons["heart"];
 export const HomeIcon = icons["home"];
 export const InboxIcon = icons["inbox"];
+export const TagIcon = icons["tag"];

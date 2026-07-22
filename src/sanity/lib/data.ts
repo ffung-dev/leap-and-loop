@@ -2,6 +2,7 @@ import { sanityFetch } from "@/sanity/lib/fetch";
 import {
   contactQuery,
   eventsQuery,
+  eventTypesQuery,
   fiberArtsClubQuery,
   homepageQuery,
   locationBySlugQuery,
@@ -14,6 +15,7 @@ import {
 import type {
   ContactPage,
   EventDoc,
+  EventTypeDoc,
   FiberArtsClub,
   Homepage,
   LocationDoc,
@@ -82,6 +84,14 @@ export function getUpcomingEvents() {
   return sanityFetch<EventDoc[]>({
     query: upcomingEventsQuery,
     tags: ["event"],
+    fallback: [],
+  });
+}
+
+export function getEventTypes() {
+  return sanityFetch<EventTypeDoc[]>({
+    query: eventTypesQuery,
+    tags: ["eventType"],
     fallback: [],
   });
 }

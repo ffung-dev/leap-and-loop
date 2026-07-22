@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { EventsExplorer } from "@/components/sections/EventsExplorer";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { buildMetadata } from "@/lib/seo";
-import { getEvents, getSiteSettings } from "@/sanity/lib/data";
+import { getEvents, getEventTypes, getSiteSettings } from "@/sanity/lib/data";
 
 export function generateMetadata(): Metadata {
   return buildMetadata({
@@ -15,7 +15,11 @@ export function generateMetadata(): Metadata {
 }
 
 export default async function EventsPage() {
-  const [events, siteSettings] = await Promise.all([getEvents(), getSiteSettings()]);
+  const [events, eventTypes, siteSettings] = await Promise.all([
+    getEvents(),
+    getEventTypes(),
+    getSiteSettings(),
+  ]);
 
   return (
     <div>
@@ -33,7 +37,7 @@ export default async function EventsPage() {
         </div>
       </div>
       <div className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8">
-        <EventsExplorer events={events} />
+        <EventsExplorer events={events} eventTypes={eventTypes} />
       </div>
     </div>
   );

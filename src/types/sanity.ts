@@ -119,18 +119,20 @@ export type LocationDoc = LocationSummary & {
   seo?: Seo;
 };
 
-export type EventType =
-  | "workshop"
-  | "market"
-  | "club-event"
-  | "community-service"
-  | "pop-up";
+export type EventTypeColor = "green" | "brown" | "tan" | "pink";
+
+export type EventTypeDoc = {
+  _id: string;
+  name: string;
+  slug: string;
+  color: EventTypeColor;
+};
 
 export type EventDoc = {
   _id: string;
   title: string;
   date: string;
-  eventType: EventType;
+  eventType: EventTypeDoc | null;
   location?: { name: string; slug: string } | null;
   locationNote?: string;
   description?: PortableTextBlock[];

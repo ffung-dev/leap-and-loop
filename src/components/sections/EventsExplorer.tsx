@@ -4,25 +4,26 @@ import { CalendarX2 } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { EventCard } from "@/components/cards/EventCard";
-import { EVENT_TYPE_LABELS } from "@/lib/format";
 import { cn } from "@/lib/utils";
-import type { EventDoc, EventType } from "@/types/sanity";
+import type { EventDoc, EventTypeDoc } from "@/types/sanity";
 
-const FILTERS: { label: string; value: EventType | "all" }[] = [
-  { label: "All", value: "all" },
-  ...(Object.entries(EVENT_TYPE_LABELS) as [EventType, string][]).map(([value, label]) => ({
-    label,
-    value,
-  })),
-];
+type EventsExplorerProps = {
+  events: EventDoc[];
+  eventTypes: EventTypeDoc[];
+};
 
-export function EventsExplorer({ events }: { events: EventDoc[] }) {
-  const [filter, setFilter] = useState<EventType | "all">("all");
+export function EventsExplorer({ events, eventTypes }: EventsExplorerProps) {
+  const [filter, setFilter] = useState<string>("all");
   // Computed once at mount (not on every render) so filtering stays a pure function of props/state.
   const [now] = useState(() => Date.now());
 
+  const filters = useMemo(
+    () => [{ label: "All", value: "all" }, ...eventTypes.map((t) => ({ label: t.name, value: t.slug }))],
+    [eventTypes]
+  );
+
   const { upcoming, past } = useMemo(() => {
-    const filtered = events.filter((e) => filter === "all" || e.eventType === filter);
+    const filtered = events.filter((e) => filter === "all" || e.eventType?.slug === filter);
     return {
       upcoming: filtered
         .filter((e) => new Date(e.date).getTime() >= now)
@@ -35,24 +36,26 @@ export function EventsExplorer({ events }: { events: EventDoc[] }) {
 
   return (
     <div>
-      <div className="flex flex-wrap gap-2" role="group" aria-label="Filter events by type">
-        {FILTERS.map((f) => (
-          <button
-            key={f.value}
-            type="button"
-            onClick={() => setFilter(f.value)}
-            aria-pressed={filter === f.value}
-            className={cn(
-              "rounded-full px-4 py-2 text-sm font-medium transition-colors",
-              filter === f.value
-                ? "bg-green-600 text-white"
-                : "bg-white text-brown-700 ring-1 ring-tan-400 hover:bg-tan-100"
-            )}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
+      {filters.length > 1 && (
+        <div className="flex flex-wrap gap-2" role="group" aria-label="Filter events by type">
+          {filters.map((f) => (
+            <button
+              key={f.value}
+              type="button"
+              onClick={() => setFilter(f.value)}
+              aria-pressed={filter === f.value}
+              className={cn(
+                "rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                filter === f.value
+                  ? "bg-green-600 text-white"
+                  : "bg-white text-brown-700 ring-1 ring-tan-400 hover:bg-tan-100"
+              )}
+            >
+              {f.label}
+            </button>
+          ))}
+        </div>
+      )}
 
       <section className="mt-10">
         <h2 className="font-subheading text-2xl text-brown-900">Upcoming</h2>

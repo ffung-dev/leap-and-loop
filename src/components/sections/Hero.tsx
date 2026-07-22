@@ -2,6 +2,7 @@ import { Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/Button";
 import { RoundedImage } from "@/components/ui/RoundedImage";
+import { WiggleOnHover } from "@/components/ui/WiggleOnHover";
 import type { Homepage } from "@/types/sanity";
 
 export function Hero({ homepage }: { homepage: Homepage }) {
@@ -13,9 +14,12 @@ export function Hero({ homepage }: { homepage: Homepage }) {
             <Sparkles size={15} aria-hidden />
             Handmade with heart
           </span>
-          <h1 className="font-title text-4xl leading-tight text-brown-900 sm:text-5xl lg:text-6xl">
+          <WiggleOnHover
+            as="h1"
+            className="font-title text-4xl leading-tight text-brown-900 sm:text-5xl lg:text-6xl"
+          >
             {homepage.heroTitle}
-          </h1>
+          </WiggleOnHover>
           {homepage.heroSubtitle && (
             <p className="mt-5 text-lg leading-relaxed text-brown-600">{homepage.heroSubtitle}</p>
           )}

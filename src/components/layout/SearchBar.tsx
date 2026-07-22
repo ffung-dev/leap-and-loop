@@ -1,5 +1,6 @@
 "use client";
 
+import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -88,28 +89,36 @@ export function SearchBar({ className }: { className?: string }) {
         )}
       </div>
 
-      {showDropdown && (
-        <div className="absolute left-0 right-0 top-full z-30 mt-2 max-h-80 overflow-y-auto rounded-2xl border border-tan-200 bg-white p-2 shadow-lg">
-          {loading && <p className="px-3 py-2 text-sm text-brown-400">Searching…</p>}
-          {!loading && visibleResults.length === 0 && (
-            <p className="px-3 py-2 text-sm text-brown-400">No results for &ldquo;{query}&rdquo;</p>
-          )}
-          {!loading &&
-            visibleResults.map((result) => (
-              <Link
-                key={`${result.kind}-${result.id}`}
-                href={result.href}
-                onClick={() => setOpen(false)}
-                className="flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm hover:bg-tan-50"
-              >
-                <span className="text-brown-800">{result.title}</span>
-                <span className="shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
-                  {result.kind}
-                </span>
-              </Link>
-            ))}
-        </div>
-      )}
+      <AnimatePresence>
+        {showDropdown && (
+          <motion.div
+            initial={{ opacity: 0, y: -6, scale: 0.98 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="absolute left-0 right-0 top-full z-30 mt-2 max-h-80 overflow-y-auto rounded-2xl border border-tan-200 bg-white p-2 shadow-lg"
+          >
+            {loading && <p className="px-3 py-2 text-sm text-brown-400">Searching…</p>}
+            {!loading && visibleResults.length === 0 && (
+              <p className="px-3 py-2 text-sm text-brown-400">No results for &ldquo;{query}&rdquo;</p>
+            )}
+            {!loading &&
+              visibleResults.map((result) => (
+                <Link
+                  key={`${result.kind}-${result.id}`}
+                  href={result.href}
+                  onClick={() => setOpen(false)}
+                  className="flex items-center justify-between gap-3 rounded-xl px-3 py-2 text-sm transition-colors hover:bg-tan-100"
+                >
+                  <span className="text-brown-800">{result.title}</span>
+                  <span className="shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                    {result.kind}
+                  </span>
+                </Link>
+              ))}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

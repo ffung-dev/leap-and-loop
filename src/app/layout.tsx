@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Birthstone_Bounce, Elsie, Karla } from "next/font/google";
+import { Elsie, Gaegu, Montserrat } from "next/font/google";
 
 import "./globals.css";
 
-const birthstoneBounce = Birthstone_Bounce({
-  variable: "--font-birthstone",
+const gaegu = Gaegu({
+  variable: "--font-gaegu",
   subsets: ["latin"],
-  weight: ["400", "500"],
+  weight: ["400", "700"],
 });
 
 const elsie = Elsie({
@@ -15,8 +15,8 @@ const elsie = Elsie({
   weight: ["400", "900"],
 });
 
-const karla = Karla({
-  variable: "--font-karla",
+const montserrat = Montserrat({
+  variable: "--font-montserrat",
   subsets: ["latin"],
 });
 
@@ -38,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${birthstoneBounce.variable} ${elsie.variable} ${karla.variable} h-full antialiased`}
+      className={`${gaegu.variable} ${elsie.variable} ${montserrat.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">{children}</body>
     </html>

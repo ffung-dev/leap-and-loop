@@ -87,6 +87,7 @@ export type Homepage = {
   aboutEyebrow?: string;
   aboutTitle?: string;
   aboutText?: PortableTextBlock[];
+  communityHighlightLabel?: string;
   communityHighlight?: GalleryHighlight;
   featuredEventsEyebrow?: string;
   featuredEventsTitle?: string;

@@ -34,6 +34,7 @@ export const homepageQuery = groq`
     aboutEyebrow,
     aboutTitle,
     aboutText,
+    communityHighlightLabel,
     communityHighlight,
     featuredEventsEyebrow,
     featuredEventsTitle,

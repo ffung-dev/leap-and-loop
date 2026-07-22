@@ -31,7 +31,7 @@ export function AboutSection({ homepage }: { homepage: Homepage }) {
             </div>
             <div className="p-6">
               <p className="text-sm font-semibold uppercase tracking-wide text-pink-600">
-                Community involvement
+                {homepage.communityHighlightLabel || "Community involvement"}
               </p>
               <h3 className="mt-1.5 font-subheading text-xl text-brown-900">
                 {communityHighlight.title}

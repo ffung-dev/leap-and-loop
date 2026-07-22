@@ -104,6 +104,14 @@ export default defineType({
       group: "about",
     }),
     defineField({
+      name: "communityHighlightLabel",
+      title: "Community highlight caption",
+      description: "The small label shown above the community highlight card.",
+      type: "string",
+      group: "about",
+      initialValue: "Community involvement",
+    }),
+    defineField({
       name: "communityHighlight",
       title: "Community highlight",
       description: "A featured story or image about Leap & Loop's community work.",

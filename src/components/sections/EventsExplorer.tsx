@@ -25,10 +25,10 @@ export function EventsExplorer({ events, eventTypes }: EventsExplorerProps) {
     const filtered = events.filter((e) => filter === "all" || e.eventType?.slug === filter);
     return {
       upcoming: filtered
-        .filter((e) => !isPastEvent(e.date))
+        .filter((e) => !isPastEvent(e.date, e.endDate))
         .sort((a, b) => parseEventDate(a.date).getTime() - parseEventDate(b.date).getTime()),
       past: filtered
-        .filter((e) => isPastEvent(e.date))
+        .filter((e) => isPastEvent(e.date, e.endDate))
         .sort((a, b) => parseEventDate(b.date).getTime() - parseEventDate(a.date).getTime()),
     };
   }, [events, filter]);

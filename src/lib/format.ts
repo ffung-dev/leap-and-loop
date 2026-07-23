@@ -17,17 +17,23 @@ export function parseEventDate(dateOnly: string) {
   return new Date(year, month - 1, day);
 }
 
-export function formatEventDate(dateOnly: string) {
-  return new Intl.DateTimeFormat("en-US", {
-    weekday: "short",
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  }).format(parseEventDate(dateOnly));
+const eventDateFormatter = new Intl.DateTimeFormat("en-US", {
+  month: "long",
+  day: "numeric",
+  year: "numeric",
+});
+
+export function formatEventDate(dateOnly: string, endDateOnly?: string) {
+  const start = parseEventDate(dateOnly);
+  if (endDateOnly && endDateOnly !== dateOnly) {
+    return eventDateFormatter.formatRange(start, parseEventDate(endDateOnly));
+  }
+  return eventDateFormatter.format(start);
 }
 
-export function isPastEvent(dateOnly: string) {
+export function isPastEvent(dateOnly: string, endDateOnly?: string) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  return parseEventDate(dateOnly).getTime() < today.getTime();
+  const effectiveEnd = endDateOnly ? parseEventDate(endDateOnly) : parseEventDate(dateOnly);
+  return effectiveEnd.getTime() < today.getTime();
 }

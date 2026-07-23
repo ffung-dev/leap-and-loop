@@ -95,6 +95,7 @@ export const eventsQuery = groq`
     _id,
     title,
     date,
+    endDate,
     "eventType": eventType->{ _id, name, "slug": slug.current, color },
     "location": location->{ name, "slug": slug.current },
     locationNote,
@@ -104,10 +105,12 @@ export const eventsQuery = groq`
 `;
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && date >= $today] | order(date asc)[0...3]{
+  *[_type == "event" && select(defined(endDate) => endDate, date) >= $today]
+    | order(date asc)[0...3]{
     _id,
     title,
     date,
+    endDate,
     "eventType": eventType->{ _id, name, "slug": slug.current, color },
     "location": location->{ name, "slug": slug.current },
     locationNote,

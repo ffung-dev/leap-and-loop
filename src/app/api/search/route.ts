@@ -16,7 +16,7 @@ type SearchResult = {
 
 const searchQuery = groq`
   {
-    "events": *[_type == "event" && title match $term][0...5]{ _id, title, date },
+    "events": *[_type == "event" && title match $term][0...5]{ _id, title, date, endDate },
     "locations": *[_type == "location" && name match $term][0...5]{ _id, name, "slug": slug.current }
   }
 `;
@@ -31,7 +31,7 @@ export async function GET(request: Request) {
 
   try {
     const { events, locations } = await client.fetch<{
-      events: { _id: string; title: string; date?: string }[];
+      events: { _id: string; title: string; date?: string; endDate?: string }[];
       locations: { _id: string; name: string; slug: string }[];
     }>(searchQuery, { term: `${q}*` });
 
@@ -41,7 +41,7 @@ export async function GET(request: Request) {
         title: e.title,
         href: `/events#${e._id}`,
         kind: "Event" as const,
-        meta: e.date ? formatEventDate(e.date) : undefined,
+        meta: e.date ? formatEventDate(e.date, e.endDate) : undefined,
       })),
       ...locations.map((l) => ({
         id: l._id,

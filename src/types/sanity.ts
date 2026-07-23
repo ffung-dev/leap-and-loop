@@ -132,6 +132,7 @@ export type EventDoc = {
   _id: string;
   title: string;
   date: string;
+  endDate?: string;
   eventType: EventTypeDoc | null;
   location?: { name: string; slug: string } | null;
   locationNote?: string;

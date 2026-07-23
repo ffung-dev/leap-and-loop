@@ -15,10 +15,19 @@ export default defineType({
     }),
     defineField({
       name: "date",
-      title: "Date",
+      title: "Start date",
       type: "date",
       options: { dateFormat: "YYYY-MM-DD" },
       validation: (Rule) => Rule.required(),
+    }),
+    defineField({
+      name: "endDate",
+      title: "End date",
+      description: "Optional — only set this for multi-day events (e.g. Jan 10–12). Leave blank for a single-day event.",
+      type: "date",
+      options: { dateFormat: "YYYY-MM-DD" },
+      validation: (Rule) =>
+        Rule.min(Rule.valueOfField("date")).error("End date must be on or after the start date."),
     }),
     defineField({
       name: "eventType",
@@ -62,13 +71,14 @@ export default defineType({
     },
   ],
   preview: {
-    select: { title: "title", date: "date", media: "images.0.image", type: "eventType.name" },
-    prepare({ title, date, media, type }) {
+    select: { title: "title", date: "date", endDate: "endDate", media: "images.0.image", type: "eventType.name" },
+    prepare({ title, date, endDate, media, type }) {
+      const dateLabel = date
+        ? [date, endDate && endDate !== date ? endDate : null].filter(Boolean).join(" – ")
+        : null;
       return {
         title,
-        subtitle: [type, date ? new Date(date).toLocaleDateString() : null]
-          .filter(Boolean)
-          .join(" · "),
+        subtitle: [type, dateLabel].filter(Boolean).join(" · "),
         media,
       };
     },

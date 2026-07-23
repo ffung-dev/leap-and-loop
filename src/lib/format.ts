@@ -9,24 +9,25 @@ export const EVENT_TYPE_COLOR_CLASSES: Record<EventTypeColor, string> = {
   pink: "bg-pink-600 text-white",
 };
 
-export function formatEventDate(iso: string) {
-  const date = new Date(iso);
+// Event dates are date-only ("YYYY-MM-DD"). `new Date(dateOnlyString)` parses
+// as UTC midnight, which can shift a day in either direction depending on the
+// viewer's timezone — parse the parts directly into a local-midnight Date instead.
+export function parseEventDate(dateOnly: string) {
+  const [year, month, day] = dateOnly.split("-").map(Number);
+  return new Date(year, month - 1, day);
+}
+
+export function formatEventDate(dateOnly: string) {
   return new Intl.DateTimeFormat("en-US", {
     weekday: "short",
     month: "long",
     day: "numeric",
     year: "numeric",
-  }).format(date);
+  }).format(parseEventDate(dateOnly));
 }
 
-export function formatEventTime(iso: string) {
-  const date = new Date(iso);
-  return new Intl.DateTimeFormat("en-US", {
-    hour: "numeric",
-    minute: "2-digit",
-  }).format(date);
-}
-
-export function isPastEvent(iso: string) {
-  return new Date(iso).getTime() < Date.now();
+export function isPastEvent(dateOnly: string) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  return parseEventDate(dateOnly).getTime() < today.getTime();
 }

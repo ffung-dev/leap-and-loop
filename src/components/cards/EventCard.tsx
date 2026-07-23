@@ -1,7 +1,7 @@
 import { Calendar, MapPin } from "lucide-react";
 
 import { RoundedImage } from "@/components/ui/RoundedImage";
-import { EVENT_TYPE_COLOR_CLASSES, formatEventDate, formatEventTime, isPastEvent } from "@/lib/format";
+import { EVENT_TYPE_COLOR_CLASSES, formatEventDate, isPastEvent } from "@/lib/format";
 import { toPlainText } from "@/lib/portableText";
 import { cn } from "@/lib/utils";
 import type { EventDoc } from "@/types/sanity";
@@ -43,7 +43,7 @@ export function EventCard({ event }: { event: EventDoc }) {
         <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-brown-500">
           <span className="flex items-center gap-1.5">
             <Calendar size={14} aria-hidden />
-            {formatEventDate(event.date)} &middot; {formatEventTime(event.date)}
+            {formatEventDate(event.date)}
           </span>
           {locationLabel && (
             <span className="flex items-center gap-1.5">

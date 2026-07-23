@@ -104,7 +104,7 @@ export const eventsQuery = groq`
 `;
 
 export const upcomingEventsQuery = groq`
-  *[_type == "event" && date >= now()] | order(date asc)[0...3]{
+  *[_type == "event" && date >= $today] | order(date asc)[0...3]{
     _id,
     title,
     date,

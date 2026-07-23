@@ -4,6 +4,7 @@ import { CalendarX2 } from "lucide-react";
 import { useMemo, useState } from "react";
 
 import { EventCard } from "@/components/cards/EventCard";
+import { isPastEvent, parseEventDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import type { EventDoc, EventTypeDoc } from "@/types/sanity";
 
@@ -14,8 +15,6 @@ type EventsExplorerProps = {
 
 export function EventsExplorer({ events, eventTypes }: EventsExplorerProps) {
   const [filter, setFilter] = useState<string>("all");
-  // Computed once at mount (not on every render) so filtering stays a pure function of props/state.
-  const [now] = useState(() => Date.now());
 
   const filters = useMemo(
     () => [{ label: "All", value: "all" }, ...eventTypes.map((t) => ({ label: t.name, value: t.slug }))],
@@ -26,13 +25,13 @@ export function EventsExplorer({ events, eventTypes }: EventsExplorerProps) {
     const filtered = events.filter((e) => filter === "all" || e.eventType?.slug === filter);
     return {
       upcoming: filtered
-        .filter((e) => new Date(e.date).getTime() >= now)
-        .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()),
+        .filter((e) => !isPastEvent(e.date))
+        .sort((a, b) => parseEventDate(a.date).getTime() - parseEventDate(b.date).getTime()),
       past: filtered
-        .filter((e) => new Date(e.date).getTime() < now)
-        .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
+        .filter((e) => isPastEvent(e.date))
+        .sort((a, b) => parseEventDate(b.date).getTime() - parseEventDate(a.date).getTime()),
     };
-  }, [events, filter, now]);
+  }, [events, filter]);
 
   return (
     <div>

@@ -1,6 +1,7 @@
 import { groq } from "next-sanity";
 import { NextResponse } from "next/server";
 
+import { formatEventDate } from "@/lib/format";
 import { client } from "@/sanity/lib/client";
 
 export const dynamic = "force-dynamic";
@@ -40,7 +41,7 @@ export async function GET(request: Request) {
         title: e.title,
         href: `/events#${e._id}`,
         kind: "Event" as const,
-        meta: e.date ? new Date(e.date).toLocaleDateString() : undefined,
+        meta: e.date ? formatEventDate(e.date) : undefined,
       })),
       ...locations.map((l) => ({
         id: l._id,

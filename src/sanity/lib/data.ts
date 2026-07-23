@@ -81,8 +81,11 @@ export function getEvents() {
 }
 
 export function getUpcomingEvents() {
+  // "en-CA" formats as YYYY-MM-DD, matching the Sanity date field's format.
+  const today = new Intl.DateTimeFormat("en-CA", { timeZone: "America/New_York" }).format(new Date());
   return sanityFetch<EventDoc[]>({
     query: upcomingEventsQuery,
+    params: { today },
     tags: ["event"],
     fallback: [],
   });
